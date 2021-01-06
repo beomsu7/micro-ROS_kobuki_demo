@@ -1,4 +1,4 @@
-# The micro-ROS crazyflie demo repository
+# The micro-ROS crazyflie demo repository with ROS2 Dashing
 
 ## Architecture
 
@@ -36,7 +36,8 @@ cd crazyflie_demo
 git clone --single-branch --branch crazyflie_demo https://github.com/micro-ROS/micro-ROS_kobuki_demo src
 ```
 
-4. [Install Gazebo](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install#InstallGazebousingUbuntupackages). Recommended procedure:
+4. (In fact if you already downloaded Gazebo11 when you downloaded ROS2 then Ignore it)
+[Install Gazebo](http://gazebosim.org/tutorials?tut=install_ubuntu&cat=install#InstallGazebousingUbuntupackages). Recommended procedure:
 ```
 curl -sSL http://get.gazebosim.org | sh
 ```
@@ -44,10 +45,11 @@ curl -sSL http://get.gazebosim.org | sh
 5. [Install gazebo_ros_pkgs (ROS 2)](http://gazebosim.org/tutorials?tut=ros2_installing&cat=connect_ros). Recommended procedure:
 ```
 source /opt/ros/dashing/setup.bash
-wget https://bitbucket.org/api/2.0/snippets/chapulina/geRKyA/f02dcd15c2c3b83b2d6aac00afe281162800da74/files/ros2.yaml
-vcs import src < ros2.yaml
-rosdep update && rosdep install --from-paths src --ignore-src -r -y
-rm ros2.yaml
+sudo apt install ros-dashing-gazebo-ros-pkgs
+sudo apt install ros-dashing-ros-core ros-dashing-geometry_msgs #this line is not sure...
+
+#test, if you can run gazebo and see 2 wheel robot it's good
+gazebo --verbose /opt/ros/dashing/share/gazebo_plugins/worlds/gazebo_ros_diff_drive_demo.world
 ```
 
 6. Compile the project:
@@ -79,7 +81,7 @@ gcc main.c Twist.c Vector3.c -lmicrocdr -lmicroxrcedds_client -o kobuki_twist_ke
 
 ```
 cd crazyflie_attitude_keyboard_controller
-gcc main.c Vector3.c -lmicrocdr -lmicroxrcedds_client -o crazyflie_attitude_keyboard_controller
+gcc main.c Point32.c -lmicrocdr -lmicroxrcedds_client -o crazyflie_attitude_keyboard_controller
 ```
 
 ## Demos
