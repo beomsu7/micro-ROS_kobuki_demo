@@ -46,7 +46,7 @@ curl -sSL http://get.gazebosim.org | sh
 ```
 source /opt/ros/dashing/setup.bash
 sudo apt install ros-dashing-gazebo-ros-pkgs
-sudo apt install ros-dashing-ros-core ros-dashing-geometry_msgs #this line is not sure...
+
 
 #test, if you can run gazebo and see 2 wheel robot it's good
 gazebo --verbose /opt/ros/dashing/share/gazebo_plugins/worlds/gazebo_ros_diff_drive_demo.world
